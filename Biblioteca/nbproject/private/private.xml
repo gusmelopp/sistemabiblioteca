@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/jhonn/sistemabiblioteca/Biblioteca/src/biblioteca/entity/Reserva.java</file>
+            <file>file:/C:/Users/jhonn/sistemabiblioteca/Biblioteca/src/biblioteca/dao/ExemplarDAO.java</file>
+            <file>file:/C:/Users/jhonn/sistemabiblioteca/Biblioteca/src/biblioteca/dao/ReservaDAO.java</file>
+            <file>file:/C:/Users/jhonn/sistemabiblioteca/Biblioteca/src/biblioteca/entity/EmprestimoExemplar.java</file>
+            <file>file:/C:/Users/jhonn/sistemabiblioteca/Biblioteca/src/biblioteca/dao/ClienteDAO.java</file>
+            <file>file:/C:/Users/jhonn/sistemabiblioteca/Biblioteca/src/biblioteca/dao/EmprestimoDAO.java</file>
+            <file>file:/C:/Users/jhonn/sistemabiblioteca/Biblioteca/src/biblioteca/dao/EmprestimoExemplarDAO.java</file>
+            <file>file:/C:/Users/jhonn/sistemabiblioteca/Biblioteca/src/biblioteca/dao/AutorDAO.java</file>
+            <file>file:/C:/Users/jhonn/sistemabiblioteca/Biblioteca/src/biblioteca/dao/FuncionarioDAO.java</file>
+            <file>file:/C:/Users/jhonn/sistemabiblioteca/Biblioteca/src/biblioteca/entity/Usuario.java</file>
+            <file>file:/C:/Users/jhonn/sistemabiblioteca/Biblioteca/src/biblioteca/entity/Emprestimo.java</file>
+            <file>file:/C:/Users/jhonn/sistemabiblioteca/Biblioteca/src/biblioteca/dao/UsuarioDAO.java</file>
+        </group>
+    </open-files>
 </project-private>

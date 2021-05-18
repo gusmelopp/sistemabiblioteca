@@ -7,7 +7,7 @@ public class Usuario {
     private int codigo;
     private String nome, sobrenome, rg, cpf;
     private LocalDate dataNasc;
-
+    
     public Usuario(int codigo, String nome, String sobrenome, String rg, String cpf, LocalDate dataNasc) {
         this.codigo = codigo;
         this.nome = nome;

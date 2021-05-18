@@ -50,7 +50,7 @@ public class Exemplar {
         this.local = local;
     }
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 

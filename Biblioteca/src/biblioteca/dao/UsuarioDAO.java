@@ -1,23 +1,31 @@
 
 package biblioteca.dao;
 
+import biblioteca.entity.Usuario;
+
 public class UsuarioDAO {
-    public boolean inserir (Cidade c)
+    public boolean inserir (Usuario usuario)
     {
-        String sql="insert into cidades (cid_nome, est_cod) values ('$1','$2')";
-        sql = sql.replace("$1", c.getNome());
-        sql = sql.replace("$2", ""+c.getEstado().getCodigo());
+        String sql="insert into usuario (nome, sobrenome, rg, cpf, dataNasc) values ('$1', '$2', '$3', '$4', '$5')";
+        sql = sql.replace("$1", usuario.getNome());
+        sql = sql.replace("$2", usuario.getSobrenome());
+        sql = sql.replace("$3", usuario.getRg());
+        sql = sql.replace("$4", usuario.getCpf());
+        sql = sql.replace("$5", usuario.getDataNasc().toString());        
         Conexao con =new Conexao();
         boolean flag=con.manipular(sql);
         con.desconectar();
         return flag;                              
     }
     
-    public boolean alterar (Cidade c)
+    public boolean alterar (Usuario usuario)
     {
-        String sql="update cidades set cid_nome='$1', est_cod='$2' where cid_cod="+ c.getCodigo();
-        sql=sql.replace("$1",c.getNome());
-        sql=sql.replace("$2",c.getEstado().getCodigo()+"");
+        String sql="update usuario set nome = '$1', sobrenome = '$2', rg = '$3', cpf = '$4', dataNasc = '$5' where codigo = " + usuario.getCodigo();
+        sql = sql.replace("$1", usuario.getNome());
+        sql = sql.replace("$2", usuario.getSobrenome());
+        sql = sql.replace("$3", usuario.getRg());
+        sql = sql.replace("$4", usuario.getCpf());
+        sql = sql.replace("$5", usuario.getDataNasc().toString());
         Conexao con=new Conexao();
         boolean flag=con.manipular(sql);
         con.desconectar();
@@ -27,7 +35,7 @@ public class UsuarioDAO {
     public boolean apagar(int id)
     {
         Conexao con=new Conexao();
-        boolean flag=con.manipular("delete from cidades where cid_cod="+id);
+        boolean flag=con.manipular("delete from usuario where codigo="+id);
         con.desconectar();
         return flag;                      
     }
