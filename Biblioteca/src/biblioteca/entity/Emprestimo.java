@@ -28,6 +28,10 @@ public class Emprestimo {
     public ArrayList<EmprestimoExemplar> getExemplares() {
         return exemplares;
     }
+    
+    public void addExemplar(EmprestimoExemplar exemplares){
+        this.exemplares.add(exemplares);
+    }
 
     public void setExemplares(ArrayList<EmprestimoExemplar> exemplares) {
         this.exemplares = exemplares;
