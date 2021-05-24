@@ -2,16 +2,16 @@
 package biblioteca.dao;
 
 import biblioteca.entity.Autor;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class AutorDAO {
 
     public boolean inserir (Autor autor)
     {
         String sql = "insert into autor (nome) values ('$1')";
-        sql = sql.replace("$1", autor.getNome());
-        Conexao con =new Conexao();
-        boolean flag = con.manipular(sql);
-        con.fecharConexao();
+        sql = sql.replace("$1", autor.getNome());        
+        boolean flag = Singleton.getCon().manipular(sql);        
         return flag;                              
     }
     
@@ -19,52 +19,43 @@ public class AutorDAO {
     {
         String sql="update autor set nome = '$1' where codigo = "+ autor.getCodigo();
         sql = sql.replace("$1",autor.getNome());
-        Conexao con = new Conexao();
-        boolean flag = con.manipular(sql);
-        con.fecharConexao();
+        boolean flag = Singleton.getCon().manipular(sql); 
         return flag;                       
     }
     
     public boolean apagar(int id)
     {
-        Conexao con = new Conexao();
-        boolean flag = con.manipular("delete from autor where codigo = "+id);
-        con.fecharConexao();
+        boolean flag = Singleton.getCon().manipular("delete from autor where codigo = "+id);
         return flag;                      
     }
     
-    /*public Cidade getCidade(int cod)
+    public static Autor getAutor(int cod)
     {
-        Cidade c = null;
-        String sql="select * from cidades where cid_cod ="+cod;
-        Conexao con=new Conexao();
-        ResultSet rs = con.consultar(sql);
+        Autor autor = null;
+        String sql="select * from autor where codigo ="+cod;
+        ResultSet rs =  Singleton.getCon().consultar(sql); 
         try
         {
           if (rs.next())
-            c = new Cidade(rs.getInt("cid_cod"),rs.getString("cid_nome"), new DALEstado().getEstado(rs.getInt("est_cod")));
+            autor = new Autor(rs.getInt("codigo"), rs.getString("nome"));
         }
-        catch(Exception e){System.out.println(e);}
-        con.desconectar();
-        return c;
+        catch(Exception e){System.out.println(e.toString());}
+        return autor;
     }
-    public ArrayList <Cidade> getCidade(String filtro)
+    public static ArrayList <Autor> getAutor(String filtro)
     {   
-        ArrayList <Cidade> lista=new ArrayList();
-        String sql="select * from cidades";
+        ArrayList <Autor> lista=new ArrayList();
+        String sql="select * from autor";
         if (!filtro.isEmpty())
             sql+=" where "+filtro;
-        sql+=" order by cid_nome";
-        Conexao con=new Conexao();
-        ResultSet rs = con.consultar(sql);
+        sql+=" order by nome";
+        ResultSet rs = Singleton.getCon().consultar(sql); 
         try
         {
           while(rs.next())
-             lista.add(
-          new Cidade(rs.getInt("cid_cod"),rs.getString("cid_nome"), new DALEstado().getEstado(rs.getInt("est_cod"))));
+             lista.add(new Autor(rs.getInt("codigo"), rs.getString("nome")) );
         }
         catch(Exception e){System.out.println(e);}
-        con.desconectar();
         return lista;
-    }*/
+    }
 }

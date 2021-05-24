@@ -2,6 +2,9 @@
 package biblioteca.dao;
 
 import biblioteca.entity.Livro;
+import biblioteca.entity.Livro;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class LivroDAO {
     public boolean inserir (Livro livro)
@@ -12,9 +15,7 @@ public class LivroDAO {
         sql = sql.replace("$3", livro.getAno());
         sql = sql.replace("$4", livro.getAutor().getCodigo()+"");
         sql = sql.replace("$5", livro.getEditora().getCodigo()+"");
-        Conexao con = new Conexao();
-        boolean flag = con.manipular(sql);
-        con.fecharConexao();
+        boolean flag = Singleton.getCon().manipular(sql); 
         return flag;                              
     }
     
@@ -26,17 +27,42 @@ public class LivroDAO {
         sql = sql.replace("$3", livro.getAno());
         sql = sql.replace("$4", livro.getAutor().getCodigo()+"");
         sql = sql.replace("$5", livro.getEditora().getCodigo()+"");
-        Conexao con = new Conexao();
-        boolean flag = con.manipular(sql);
-        con.fecharConexao();
+        boolean flag = Singleton.getCon().manipular(sql); 
         return flag;                       
     }
     
     public boolean apagar(int id)
     {
-        Conexao con = new Conexao();
-        boolean flag = con.manipular("delete from livro where codigo = "+id);
-        con.fecharConexao();
+        boolean flag = Singleton.getCon().manipular("delete from livro where codigo = "+id);;
         return flag;                      
+    }
+    public Livro getLivro(int cod)
+    {
+        Livro livro = null;
+        String sql="select * from livro where codigo ="+cod;
+        ResultSet rs =  Singleton.getCon().consultar(sql); 
+        try
+        {
+          if (rs.next())
+            livro = new Livro(rs.getInt("codigo"), rs.getString("genero"), rs.getString("titulo"), rs.getString("ano"), AutorDAO.getAutor(rs.getInt("autor")), EditoraDAO.getEditora(rs.getInt("editora")));
+        }
+        catch(Exception e){System.out.println(e.toString());}
+        return livro;
+    }
+    public ArrayList <Livro> getLivro(String filtro)
+    {   
+        ArrayList <Livro> lista=new ArrayList();
+        String sql="select * from livro INNER JOIN livro on livro.codigo = livro.livro";
+        if (!filtro.isEmpty())
+            sql+=" where "+filtro;
+        sql+=" order by livro.titulo";
+        ResultSet rs = Singleton.getCon().consultar(sql); 
+        try
+        {
+          while(rs.next())
+             lista.add(new Livro(rs.getInt("codigo"), rs.getInt("qtde"), rs.getDouble("valor"), rs.getString("local"), rs.getBoolean("status"), LivroDAO.getLivro(rs.getInt("livro"))));
+        }
+        catch(Exception e){System.out.println(e);}
+        return lista;
     }
 }

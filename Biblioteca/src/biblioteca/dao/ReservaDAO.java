@@ -10,9 +10,7 @@ public class ReservaDAO {
         sql = sql.replace("$1", reserva.getData().toString());
         sql = sql.replace("$2", reserva.getCliente().getCodigo() + "");
         sql = sql.replace("$3", reserva.getExemplar().getCodigo() + "");       
-        Conexao con =new Conexao();
-        boolean flag=con.manipular(sql);
-        con.fecharConexao();
+        boolean flag = Singleton.getCon().manipular(sql); 
         return flag;                              
     }
     
@@ -22,17 +20,13 @@ public class ReservaDAO {
         sql = sql.replace("$1", reserva.getData().toString());
         sql = sql.replace("$2", reserva.getCliente().getCodigo() + "");
         sql = sql.replace("$3", reserva.getExemplar().getCodigo() + ""); 
-        Conexao con=new Conexao();
-        boolean flag=con.manipular(sql);
-        con.fecharConexao();
+        boolean flag = Singleton.getCon().manipular(sql); 
         return flag;                       
     }
     
     public boolean apagar(int id)
-    {
-        Conexao con=new Conexao();
-        boolean flag=con.manipular("delete from reserva where codigo="+id);
-        con.fecharConexao();
+    {        
+        boolean flag = Singleton.getCon().manipular("delete from reserva where codigo="+id);        
         return flag;                      
     }
 }

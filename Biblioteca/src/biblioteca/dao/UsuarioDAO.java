@@ -11,9 +11,7 @@ public class UsuarioDAO {
         sql = sql.replace("$2", usuario.getRg());
         sql = sql.replace("$3", usuario.getCpf());
         sql = sql.replace("$4", usuario.getDataNasc().toString());        
-        Conexao con =new Conexao();
-        boolean flag=con.manipular(sql);
-        con.fecharConexao();
+        boolean flag = Singleton.getCon().manipular(sql); 
         return flag;                              
     }
     
@@ -24,17 +22,13 @@ public class UsuarioDAO {
         sql = sql.replace("$2", usuario.getRg());
         sql = sql.replace("$3", usuario.getCpf());
         sql = sql.replace("$4", usuario.getDataNasc().toString());
-        Conexao con=new Conexao();
-        boolean flag=con.manipular(sql);
-        con.fecharConexao();
+        boolean flag = Singleton.getCon().manipular(sql); 
         return flag;                       
     }
     
     public boolean apagar(int id)
-    {
-        Conexao con=new Conexao();
-        boolean flag=con.manipular("delete from usuario where codigo="+id);
-        con.fecharConexao();
+    {        
+        boolean flag = Singleton.getCon().manipular("delete from usuario where codigo="+id);
         return flag;                      
     }
 }
