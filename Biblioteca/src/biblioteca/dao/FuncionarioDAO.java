@@ -2,48 +2,56 @@
 package biblioteca.dao;
 
 import biblioteca.entity.Funcionario;
+import biblioteca.entity.Usuario;
 
 public class FuncionarioDAO {
     public boolean inserir (Funcionario func)
     {
-        String sql="insert into funcionarios (nome, sobrenome, rg, cpf, dataNasc, ctps, pis, salario) values ('$1', '$2', '$3', '$4', '$5', '$6', '$7', '$8')";
-        sql = sql.replace("$1", func.getNome());
-        sql = sql.replace("$2", func.getSobrenome());
-        sql = sql.replace("$3", func.getRg());
-        sql = sql.replace("$4", func.getCpf());
-        sql = sql.replace("$5", func.getDataNasc().toString()); 
-        sql = sql.replace("$6", func.getCtps()); 
-        sql = sql.replace("$7", func.getPis()); 
-        sql = sql.replace("$8", String.valueOf(func.getSalario()));
+        boolean flag = false;
+        UsuarioDAO dao = new UsuarioDAO();
         
-        Conexao con = new Conexao();
-        boolean flag = con.manipular(sql);  
-        con.fecharConexao();
-        return flag;                              
+        if(dao.inserir(new Usuario(func.getNome(), func.getRg(), func.getCpf(), func.getDataNasc())))
+        {
+            Conexao con = new Conexao();
+            int cod = con.getMaxPK("usuario","codigo");
+            
+            String sql="insert into funcionarios (salario, ctps, pis, usuario) values ('$1', '$2', '$3', '$4')";
+            sql = sql.replace("$1", func.getSalario()+"");
+            sql = sql.replace("$2", func.getCtps());
+            sql = sql.replace("$3", func.getPis());
+            sql = sql.replace("$4", "" + cod);
+            flag = con.manipular(sql);  
+            con.fecharConexao();
+        }
+        return flag;                       
     }
     
     public boolean alterar (Funcionario func)
     {
-        String sql="update funcionarios set nome = '$1', sobrenome = '$2', rg = '$3', cpf = '$4', dataNasc = '$5', ctps = '$6', pis = '$7', salario = '$8' where cid_cod="+ func.getCodigo();
-        sql = sql.replace("$1", func.getNome());
-        sql = sql.replace("$2", func.getSobrenome());
-        sql = sql.replace("$3", func.getRg());
-        sql = sql.replace("$4", func.getCpf());
-        sql = sql.replace("$5", func.getDataNasc().toString()); 
-        sql = sql.replace("$6", func.getCtps()); 
-        sql = sql.replace("$7", func.getPis()); 
-        sql = sql.replace("$8", String.valueOf(func.getSalario()));
+        boolean flag = false;
+        UsuarioDAO dao = new UsuarioDAO();
         
-        Conexao con=new Conexao();
-        boolean flag=con.manipular(sql);
-        con.fecharConexao();
-        return flag;                       
+        if(dao.alterar(new Usuario(func.getCodigo(), func.getNome(), func.getRg(), func.getCpf(), func.getDataNasc())))
+        {
+            String sql="update funcionarios set ctps = '$1', pis = '$2', salario = '$3' where usuario="+ func.getCodigo();
+            sql = sql.replace("$1", func.getCtps());
+            sql = sql.replace("$2", func.getPis());
+            sql = sql.replace("$3", func.getSalario()+"");
+            Conexao con=new Conexao();
+            flag=con.manipular(sql);
+            con.fecharConexao();
+            
+        }
+        return flag;
     }
     
     public boolean apagar(int id)
     {
+        boolean flag = false;
         Conexao con=new Conexao();
-        boolean flag=con.manipular("delete from funcionarios where codigo="+id);
+        UsuarioDAO dao = new UsuarioDAO();
+        if(con.manipular("delete from funcionarios where usuario="+id));
+            flag = dao.apagar(id);
         con.fecharConexao();
         return flag;                      
     }

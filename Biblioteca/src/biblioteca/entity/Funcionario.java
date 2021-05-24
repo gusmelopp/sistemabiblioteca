@@ -7,8 +7,8 @@ public class Funcionario extends Usuario {
     private String ctps, pis;
     private double salario;
 
-    public Funcionario(int codigo, String nome, String sobrenome, String rg, String cpf, LocalDate dataNasc, String ctps, String pis, double salario) {
-        super(codigo, nome, sobrenome, rg, cpf, dataNasc);
+    public Funcionario(int codigo, String nome, String rg, String cpf, LocalDate dataNasc, String ctps, String pis, double salario) {
+        super(codigo, nome, rg, cpf, dataNasc);
         this.ctps = ctps;
         this.pis = pis;
         this.salario = salario;

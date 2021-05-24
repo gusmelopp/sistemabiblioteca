@@ -5,13 +5,21 @@ import java.time.LocalDate;
 
 public class Usuario {
     private int codigo;
-    private String nome, sobrenome, rg, cpf;
+    private String nome, rg, cpf;
     private LocalDate dataNasc;
     
-    public Usuario(int codigo, String nome, String sobrenome, String rg, String cpf, LocalDate dataNasc) {
+    
+    public Usuario(String nome, String rg, String cpf, LocalDate dataNasc) {
+        this.codigo = 0;
+        this.nome = nome;
+        this.rg = rg;
+        this.cpf = cpf;
+        this.dataNasc = dataNasc;
+    }
+    
+    public Usuario(int codigo, String nome, String rg, String cpf, LocalDate dataNasc) {
         this.codigo = codigo;
         this.nome = nome;
-        this.sobrenome = sobrenome;
         this.rg = rg;
         this.cpf = cpf;
         this.dataNasc = dataNasc;
@@ -32,15 +40,7 @@ public class Usuario {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    public String getSobrenome() {
-        return sobrenome;
-    }
-
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
-    }
-
+    
     public String getRg() {
         return rg;
     }

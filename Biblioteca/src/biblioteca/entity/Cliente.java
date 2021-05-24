@@ -7,8 +7,8 @@ public class Cliente extends Usuario {
     private String cart; //cart = carteira de identificação
     private boolean estudante; //qualquer coisa alterar para int
     
-    public Cliente(int codigo, String nome, String sobrenome, String rg, String cpf, LocalDate dataNasc, String cart, boolean estudante) {
-        super(codigo, nome, sobrenome, rg, cpf, dataNasc);
+    public Cliente(int codigo, String nome, String rg, String cpf, LocalDate dataNasc, String cart, boolean estudante) {
+        super(codigo, nome, rg, cpf, dataNasc);
         this.cart = cart;
         this.estudante = estudante;
     }
