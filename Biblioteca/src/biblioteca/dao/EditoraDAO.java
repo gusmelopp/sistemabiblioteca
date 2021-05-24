@@ -28,7 +28,7 @@ public class EditoraDAO {
         boolean flag = Singleton.getCon().manipular("delete from editora where codigo ="+id);
         return flag;                      
     }
-    public Editora getEditora(int cod)
+    public static Editora getEditora(int cod)
     {
         Editora editora = null;
         String sql="select * from editora where codigo ="+cod;
@@ -41,7 +41,7 @@ public class EditoraDAO {
         catch(Exception e){System.out.println(e.toString());}
         return editora;
     }
-    public ArrayList <Editora> getEditora(String filtro)
+    public static ArrayList <Editora> getEditora(String filtro)
     {   
         ArrayList <Editora> lista=new ArrayList();
         String sql="select * from editora";

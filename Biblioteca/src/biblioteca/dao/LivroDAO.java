@@ -36,7 +36,7 @@ public class LivroDAO {
         boolean flag = Singleton.getCon().manipular("delete from livro where codigo = "+id);;
         return flag;                      
     }
-    public Livro getLivro(int cod)
+    public static Livro getLivro(int cod)
     {
         Livro livro = null;
         String sql="select * from livro where codigo ="+cod;
@@ -49,7 +49,7 @@ public class LivroDAO {
         catch(Exception e){System.out.println(e.toString());}
         return livro;
     }
-    public ArrayList <Livro> getLivro(String filtro)
+    public static ArrayList <Livro> getLivro(String filtro)
     {   
         ArrayList <Livro> lista=new ArrayList();
         String sql="select * from livro INNER JOIN livro on livro.codigo = livro.livro";
@@ -60,7 +60,7 @@ public class LivroDAO {
         try
         {
           while(rs.next())
-             lista.add(new Livro(rs.getInt("codigo"), rs.getInt("qtde"), rs.getDouble("valor"), rs.getString("local"), rs.getBoolean("status"), LivroDAO.getLivro(rs.getInt("livro"))));
+             lista.add(new Livro(rs.getInt("codigo"), rs.getString("genero"), rs.getString("titulo"), rs.getString("ano"), AutorDAO.getAutor(rs.getInt("autor")), EditoraDAO.getEditora(rs.getInt("editora"))));
         }
         catch(Exception e){System.out.println(e);}
         return lista;

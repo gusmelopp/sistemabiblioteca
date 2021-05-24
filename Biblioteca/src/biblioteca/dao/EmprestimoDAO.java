@@ -5,6 +5,7 @@ import biblioteca.entity.Emprestimo;
 import biblioteca.entity.Emprestimo;
 import biblioteca.entity.EmprestimoExemplar;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
@@ -52,7 +53,7 @@ public class EmprestimoDAO {
         ResultSet rs = Singleton.getCon().consultar(sql);
         try{
             while(rs.next())
-                lista.add(new EmprestimoExemplar(ExemplarDAO.getExemplar(rs.getInt("exemplar")), rs.getDate("dataDev"),  rs.getDate("dataLim")));
+                lista.add(new EmprestimoExemplar(ExemplarDAO.getExemplar(rs.getInt("exemplar")), LocalDate.parse(rs.getString("dataDev")),  LocalDate.parse(rs.getString("dataLim"))));
         }
         catch(Exception e){
         }
@@ -71,7 +72,7 @@ public class EmprestimoDAO {
         {
           if (rs.next())
             emprestimo = new Emprestimo(rs.getInt("codigo"), 
-                    rs.getString("dtEmprestimo"), 
+                    LocalDate.parse(rs.getString("dtEmprestimo")), 
                     rs.getDouble("totalValor"),
                     rs.getDouble("totalMulta"), 
                     rs.getBoolean("status"), 
@@ -93,7 +94,14 @@ public class EmprestimoDAO {
         try
         {
           while(rs.next())
-             lista.add(new Emprestimo(rs.getInt("codigo"), rs.getString("nome")) );
+             lista.add(new Emprestimo(rs.getInt("codigo"), 
+                    LocalDate.parse(rs.getString("dtEmprestimo")), 
+                    rs.getDouble("totalValor"),
+                    rs.getDouble("totalMulta"), 
+                    rs.getBoolean("status"), 
+                    FuncionarioDAO.getFuncionario(rs.getInt("funcionario")),
+                    ClienteDAO.getCliente(rs.getInt("cliente")),
+                    getItens(rs.getInt("codigo"))));
         }
         catch(Exception e){System.out.println(e);}
         return lista;

@@ -1,20 +1,21 @@
 
 package biblioteca.entity;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
 
 public class Emprestimo {
     private int codigo;
-    private LocalTime dtEmprestimo;
+    private LocalDate dtEmprestimo;
     private double totalValor;
     private double totalMulta;
     private boolean status;
     private Funcionario funcionario;
     private Cliente cliente;
     private ArrayList<EmprestimoExemplar> exemplares;
-    public Emprestimo(int codigo, LocalTime dtEmprestimo, double totalValor, double totalMulta, boolean status, Funcionario funcionario, Cliente cliente, ArrayList<EmprestimoExemplar> exemplares ) {
+    public Emprestimo(int codigo, LocalDate dtEmprestimo, double totalValor, double totalMulta, boolean status, Funcionario funcionario, Cliente cliente, ArrayList<EmprestimoExemplar> exemplares ) {
         this.codigo = codigo;
         this.dtEmprestimo = dtEmprestimo;
         this.totalValor = totalValor;
@@ -45,11 +46,11 @@ public class Emprestimo {
         this.codigo = codigo;
     }
 
-    public LocalTime getDtEmprestimo() {
+    public LocalDate getDtEmprestimo() {
         return dtEmprestimo;
     }
 
-    public void setDtEmprestimo(LocalTime dtEmprestimo) {
+    public void setDtEmprestimo(LocalDate dtEmprestimo) {
         this.dtEmprestimo = dtEmprestimo;
     }
 

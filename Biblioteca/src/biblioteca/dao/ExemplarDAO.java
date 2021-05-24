@@ -36,7 +36,7 @@ public class ExemplarDAO {
         boolean flag = Singleton.getCon().manipular("delete from exemplar where codigo="+id);        
         return flag;                      
     }
-    public Exemplar getExemplar(int cod)
+    public static Exemplar getExemplar(int cod)
     {
         Exemplar exemplar = null;
         String sql="select * from exemplar where codigo ="+cod;
@@ -49,7 +49,7 @@ public class ExemplarDAO {
         catch(Exception e){System.out.println(e.toString());}
         return exemplar;
     }
-    public ArrayList <Exemplar> getExemplar(String filtro)
+    public static ArrayList <Exemplar> getExemplar(String filtro)
     {   
         ArrayList <Exemplar> lista=new ArrayList();
         String sql="select * from exemplar INNER JOIN livro on livro.codigo = exemplar.livro";
