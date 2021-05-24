@@ -18,16 +18,17 @@ public class EmprestimoDAO {
         Conexao con = new Conexao();
         boolean flag = con.manipular(sql);
         if(flag){
-            int cod=Banco.getCon().getMaxPK("emprestimo","codigo");
+            int cod = con.getMaxPK("emprestimo","codigo");
             for(EmprestimoExemplar ep : emprestimo.getExemplares()){
                 sql = "insert into emprestimoExemplares (emprestimo, exemplar, dataDev, dataLim) values ('$1','$2','$3','$4')";
                 sql = sql.replace("$1", cod+"");
                 sql = sql.replace("$2", ep.getExemplar().getCodigo()+"");
                 sql = sql.replace("$3", ep.getDataDev().toString());
                 sql = sql.replace("$4", ep.getDataLim().toString());
+                flag = con.manipular(sql);
             }
         }
-        con.desconectar();
+        con.fecharConexao();
         return flag;                              
     }
     
@@ -42,7 +43,7 @@ public class EmprestimoDAO {
         sql = sql.replace("$6", emprestimo.getCliente().getCodigo()+"");
         Conexao con = new Conexao();
         boolean flag = con.manipular(sql);
-        con.desconectar();
+        con.fecharConexao();
         return flag;                       
     }
     
@@ -50,7 +51,7 @@ public class EmprestimoDAO {
     {
         Conexao con = new Conexao();
         boolean flag = con.manipular("delete from emprestimo where codigo ="+id);
-        con.desconectar();
+        con.fecharConexao();
         return flag;                      
     }
 }

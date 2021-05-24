@@ -12,7 +12,7 @@ public class ReservaDAO {
         sql = sql.replace("$3", reserva.getExemplar().getCodigo() + "");       
         Conexao con =new Conexao();
         boolean flag=con.manipular(sql);
-        con.desconectar();
+        con.fecharConexao();
         return flag;                              
     }
     
@@ -24,7 +24,7 @@ public class ReservaDAO {
         sql = sql.replace("$3", reserva.getExemplar().getCodigo() + ""); 
         Conexao con=new Conexao();
         boolean flag=con.manipular(sql);
-        con.desconectar();
+        con.fecharConexao();
         return flag;                       
     }
     
@@ -32,7 +32,7 @@ public class ReservaDAO {
     {
         Conexao con=new Conexao();
         boolean flag=con.manipular("delete from reserva where codigo="+id);
-        con.desconectar();
+        con.fecharConexao();
         return flag;                      
     }
 }

@@ -16,7 +16,7 @@ public class ClienteDAO {
         sql = sql.replace("$7", String.valueOf(cliente.isEstudante()));
         Conexao con = new Conexao();
         boolean flag = con.manipular(sql);
-        con.desconectar();
+        con.fecharConexao();
         return flag;                              
     }
     
@@ -32,7 +32,7 @@ public class ClienteDAO {
         sql = sql.replace("$7", String.valueOf(cliente.isEstudante()));
         Conexao con = new Conexao();
         boolean flag = con.manipular(sql);
-        con.desconectar();
+        con.fecharConexao();
         return flag;                       
     }
     
@@ -40,7 +40,7 @@ public class ClienteDAO {
     {
         Conexao con = new Conexao();
         boolean flag = con.manipular("delete from cliente where codigo="+id);
-        con.desconectar();
+        con.fecharConexao();
         return flag;                      
     }
 }

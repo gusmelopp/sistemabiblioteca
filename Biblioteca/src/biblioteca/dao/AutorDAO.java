@@ -11,7 +11,7 @@ public class AutorDAO {
         sql = sql.replace("$1", autor.getNome());
         Conexao con =new Conexao();
         boolean flag = con.manipular(sql);
-        con.desconectar();
+        con.fecharConexao();
         return flag;                              
     }
     
@@ -21,7 +21,7 @@ public class AutorDAO {
         sql = sql.replace("$1",autor.getNome());
         Conexao con = new Conexao();
         boolean flag = con.manipular(sql);
-        con.desconectar();
+        con.fecharConexao();
         return flag;                       
     }
     
@@ -29,7 +29,7 @@ public class AutorDAO {
     {
         Conexao con = new Conexao();
         boolean flag = con.manipular("delete from autor where codigo = "+id);
-        con.desconectar();
+        con.fecharConexao();
         return flag;                      
     }
     

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca.TelaPrincipalController">
+   <children>
+      <BorderPane prefHeight="400.0" prefWidth="600.0">
+         <top>
+            <MenuBar BorderPane.alignment="CENTER">
+              <menus>
+                  <Menu mnemonicParsing="false" text="Menu">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Relatórios" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Sair" />
+                     </items>
+                  </Menu>
+                <Menu mnemonicParsing="false" text="Usuários">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#evtFuncionarios" text="Funcionários" />
+                        <MenuItem mnemonicParsing="false" onAction="#evtClientes" text="Clientes" />
+                  </items>
+                </Menu>
+                  <Menu mnemonicParsing="false" text="Livros">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#evtAutores" text="Autores" />
+                        <MenuItem mnemonicParsing="false" onAction="#evtEditora" text="Editora" />
+                        <MenuItem mnemonicParsing="false" onAction="#evtExemplares" text="Livros" />
+                        <MenuItem mnemonicParsing="false" onAction="#evtEditora" text="Exemplares" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Empréstimos">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#evtRegistrarEmprestimo" text="Registrar Empréstimo" />
+                        <MenuItem mnemonicParsing="false" onAction="#evtRegistrarReserva" text="Registrar Reserva" />
+                     </items>
+                  </Menu>
+                <Menu mnemonicParsing="false" text="Ajuda" />
+              </menus>
+            </MenuBar>
+         </top>
+      </BorderPane>
+   </children>
+</AnchorPane>

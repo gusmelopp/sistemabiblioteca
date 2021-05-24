@@ -18,7 +18,7 @@ public class FuncionarioDAO {
         
         Conexao con = new Conexao();
         boolean flag = con.manipular(sql);  
-        con.desconectar();
+        con.fecharConexao();
         return flag;                              
     }
     
@@ -36,7 +36,7 @@ public class FuncionarioDAO {
         
         Conexao con=new Conexao();
         boolean flag=con.manipular(sql);
-        con.desconectar();
+        con.fecharConexao();
         return flag;                       
     }
     
@@ -44,7 +44,7 @@ public class FuncionarioDAO {
     {
         Conexao con=new Conexao();
         boolean flag=con.manipular("delete from funcionarios where codigo="+id);
-        con.desconectar();
+        con.fecharConexao();
         return flag;                      
     }
 }

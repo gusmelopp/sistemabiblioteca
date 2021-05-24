@@ -10,7 +10,7 @@ public class EditoraDAO {
         sql = sql.replace("$1", editora.getDescricao());
         Conexao con = new Conexao();
         boolean flag = con.manipular(sql);
-        con.desconectar();
+        con.fecharConexao();
         return flag;                              
     }
     
@@ -20,7 +20,7 @@ public class EditoraDAO {
         sql=sql.replace("$1",editora.getDescricao());
         Conexao con = new Conexao();
         boolean flag = con.manipular(sql);
-        con.desconectar();
+        con.fecharConexao();
         return flag;                       
     }
     
@@ -28,7 +28,7 @@ public class EditoraDAO {
     {
         Conexao con = new Conexao();
         boolean flag = con.manipular("delete from editora where codigo ="+id);
-        con.desconectar();
+        con.fecharConexao();
         return flag;                      
     }
 }

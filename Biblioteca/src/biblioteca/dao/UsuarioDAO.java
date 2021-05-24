@@ -14,7 +14,7 @@ public class UsuarioDAO {
         sql = sql.replace("$5", usuario.getDataNasc().toString());        
         Conexao con =new Conexao();
         boolean flag=con.manipular(sql);
-        con.desconectar();
+        con.fecharConexao();
         return flag;                              
     }
     
@@ -28,7 +28,7 @@ public class UsuarioDAO {
         sql = sql.replace("$5", usuario.getDataNasc().toString());
         Conexao con=new Conexao();
         boolean flag=con.manipular(sql);
-        con.desconectar();
+        con.fecharConexao();
         return flag;                       
     }
     
@@ -36,7 +36,7 @@ public class UsuarioDAO {
     {
         Conexao con=new Conexao();
         boolean flag=con.manipular("delete from usuario where codigo="+id);
-        con.desconectar();
+        con.fecharConexao();
         return flag;                      
     }
 }

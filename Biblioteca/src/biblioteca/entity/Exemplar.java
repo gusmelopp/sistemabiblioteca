@@ -2,20 +2,19 @@
 package biblioteca.entity;
 
 public class Exemplar {
-    private int codigo;
-    private String genero, titulo, local;
+    private int codigo, qtde;
+    private double valor;
+    private String local;
     private boolean status;
-    private Autor autor;
-    private Editora editora;
+    private Livro livro;
 
-    public Exemplar(int codigo, String genero, String titulo, String local, boolean status, Autor autor, Editora editora) {
+    public Exemplar(int codigo, int qtde, double valor, String local, boolean status, Livro livro) {
         this.codigo = codigo;
-        this.genero = genero;
-        this.titulo = titulo;
+        this.qtde = qtde;
+        this.valor = valor;
         this.local = local;
         this.status = status;
-        this.autor = autor;
-        this.editora = editora;
+        this.livro = livro;
     }
 
     public int getCodigo() {
@@ -26,20 +25,20 @@ public class Exemplar {
         this.codigo = codigo;
     }
 
-    public String getGenero() {
-        return genero;
+    public int getQtde() {
+        return qtde;
     }
 
-    public void setGenero(String genero) {
-        this.genero = genero;
+    public void setQtde(int qtde) {
+        this.qtde = qtde;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public double getValor() {
+        return valor;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setValor(double valor) {
+        this.valor = valor;
     }
 
     public String getLocal() {
@@ -58,19 +57,11 @@ public class Exemplar {
         this.status = status;
     }
 
-    public Autor getAutor() {
-        return autor;
+    public Livro getLivro() {
+        return livro;
     }
 
-    public void setAutor(Autor autor) {
-        this.autor = autor;
+    public void setLivro(Livro livro) {
+        this.livro = livro;
     }
-
-    public Editora getEditora() {
-        return editora;
-    }
-
-    public void setEditora(Editora editora) {
-        this.editora = editora;
-    }    
 }
