@@ -1,27 +1,41 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package biblioteca;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 
-/**
- * FXML Controller class
- *
- * @author Daniel Trombini
- */
 public class TelaExemplaresCadastroController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
+    @FXML
+    private TextField txId;
+    @FXML
+    private TextField txQuantidade;
+    @FXML
+    private TextField txLocal;
+    @FXML
+    private TextField txValor;
+    @FXML
+    private ComboBox<?> cbLivro;
+    @FXML
+    private TextField txStatus;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
     }    
+
+    @FXML
+    private void evtConfirmar(ActionEvent event) {
+    }
+
+    @FXML
+    private void evtCancelar(ActionEvent event) {
+        txId.getScene().getWindow().hide();
+    }
     
 }

@@ -13,7 +13,7 @@ public class TelaEditorasCadastroController implements Initializable {
     @FXML
     private TextField txId;
     @FXML
-    private TextField txDescricao;
+    private TextField txNome;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -26,6 +26,7 @@ public class TelaEditorasCadastroController implements Initializable {
 
     @FXML
     private void evtCancelar(ActionEvent event) {
+        txId.getScene().getWindow().hide();
     }
     
 }

@@ -26,6 +26,7 @@ public class TelaAutoresCadastroController implements Initializable {
 
     @FXML
     private void evtCancelar(ActionEvent event) {
+        txId.getScene().getWindow().hide();
     }
     
 }

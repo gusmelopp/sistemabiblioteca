@@ -33,7 +33,7 @@
             <TableView fx:id="tabela" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <columns>
                   <TableColumn fx:id="colId" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="ID" />
-                  <TableColumn fx:id="colDescricao" prefWidth="75.0" text="DESCRIÇÃO" />
+                  <TableColumn fx:id="colNome" prefWidth="75.0" text="NOME" />
                </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

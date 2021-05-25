@@ -1,11 +1,136 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca.TelaEmprestimosCadastroController">
-    
-</AnchorPane>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="586.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca.TelaEmprestimosCadastroController">
+   <children>
+      <GridPane>
+         <columnConstraints>
+            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="110.0" minWidth="110.0" prefWidth="110.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="456.0" minWidth="10.0" prefWidth="444.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label text="ID: " />
+            <Label prefHeight="17.0" prefWidth="30.0" text="Data:" textAlignment="RIGHT" GridPane.rowIndex="1" />
+            <Label text="Cliente:" GridPane.rowIndex="2" />
+            <Label text="Multa:" GridPane.rowIndex="3" />
+            <Label text="Total:" GridPane.rowIndex="4" />
+            <Label text="Responsável:" GridPane.rowIndex="5" />
+            <Label text="Status:" GridPane.rowIndex="6" />
+            <TextField fx:id="txId" editable="false" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets left="20.0" right="20.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="txCartao" promptText="Código Cartão" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="20.0" right="20.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="txMulta" layoutX="140.0" layoutY="138.0" prefHeight="25.0" prefWidth="424.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="20.0" right="20.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="txResponsavel" promptText="Código Matrícula" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <GridPane.margin>
+                  <Insets left="20.0" right="20.0" />
+               </GridPane.margin>
+            </TextField>
+            <DatePicker fx:id="dtEmprestimo" prefHeight="25.0" prefWidth="424.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="20.0" right="20.0" />
+               </GridPane.margin>
+            </DatePicker>
+            <TextField fx:id="txTotal" prefHeight="25.0" prefWidth="424.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <GridPane.margin>
+                  <Insets left="20.0" right="20.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="txStatus" prefHeight="25.0" prefWidth="424.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <GridPane.margin>
+                  <Insets left="20.0" right="20.0" />
+               </GridPane.margin>
+            </TextField>
+         </children>
+         <VBox.margin>
+            <Insets top="30.0" />
+         </VBox.margin>
+      </GridPane>
+      <Accordion />
+      <Label prefHeight="17.0" prefWidth="93.0" text="Itens Emprétimo:">
+         <VBox.margin>
+            <Insets left="50.0" top="10.0" />
+         </VBox.margin>
+      </Label>
+      <TableView prefHeight="200.0" prefWidth="500.0">
+        <columns>
+          <TableColumn fx:id="colTitulo" prefWidth="155.0" text="TITULO" />
+          <TableColumn fx:id="colDtLimite" minWidth="15.0" prefWidth="90.0" text="DATA LIMITE" />
+            <TableColumn fx:id="colDtDevolucao" minWidth="20.0" prefWidth="90.0" text="DEVOLUÇÃO" />
+            <TableColumn fx:id="colValor" prefWidth="84.0" text="VALOR" />
+            <TableColumn fx:id="colSituacao" resizable="false" text="SITUAÇÃO" />
+        </columns>
+         <VBox.margin>
+            <Insets left="50.0" right="50.0" top="5.0" />
+         </VBox.margin>
+         <contextMenu>
+            <ContextMenu>
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#evtAlterar" text="Alterar" />
+                  <MenuItem mnemonicParsing="false" onAction="#evtExcluir" text="Excluir" />
+                  <MenuItem mnemonicParsing="false" onAction="#evtDanificado" text="Danificado">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="D" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+              </items>
+            </ContextMenu>
+         </contextMenu>
+      </TableView>
+      <Button mnemonicParsing="false" onAction="#evtAdicionar" prefWidth="100.0" text="Adicionar Item">
+         <VBox.margin>
+            <Insets left="450.0" top="10.0" />
+         </VBox.margin>
+      </Button>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="600.0" spacing="10.0" style="-fx-background-color: #aaaaaa;" VBox.vgrow="ALWAYS">
+         <VBox.margin>
+            <Insets top="30.0" />
+         </VBox.margin>
+         <children>
+            <Button mnemonicParsing="false" onAction="#evtConfirmar" prefWidth="100.0" text="Confirmar" />
+            <Button mnemonicParsing="false" onAction="#evtCancelar" prefHeight="25.0" prefWidth="100.0" text="Cancelar" />
+         </children>
+      </HBox>
+   </children>
+</VBox>

@@ -34,7 +34,7 @@
             <TableColumn fx:id="colRG" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="RG" />
             <TableColumn fx:id="colCPF" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="CPF" />
             <TableColumn fx:id="colNascimento" maxWidth="180.0" minWidth="100.0" prefWidth="137.0" text="NASCIMENTO" />
-            <TableColumn fx:id="colCarteirinha" maxWidth="217.0" minWidth="100.0" prefWidth="67.0" text="CARTEIRINHA" />
+            <TableColumn fx:id="colCartao" maxWidth="217.0" minWidth="100.0" prefWidth="67.0" text="CARTAO" />
             <TableColumn fx:id="colEstudante" maxWidth="170.0" minWidth="100.0" prefWidth="98.0" text="ESTUDANTE" />
          </columns>
          <columnResizePolicy>

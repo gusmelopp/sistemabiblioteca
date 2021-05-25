@@ -17,7 +17,7 @@
                      <items>
                         <MenuItem mnemonicParsing="false" text="Relatórios" />
                         <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Sair" />
+                        <MenuItem mnemonicParsing="false" onAction="#evtSair" text="Sair" />
                      </items>
                   </Menu>
                 <Menu mnemonicParsing="false" text="Usuários">
@@ -29,15 +29,15 @@
                   <Menu mnemonicParsing="false" text="Livros">
                      <items>
                         <MenuItem mnemonicParsing="false" onAction="#evtAutores" text="Autores" />
-                        <MenuItem mnemonicParsing="false" onAction="#evtEditora" text="Editora" />
-                        <MenuItem mnemonicParsing="false" onAction="#evtExemplares" text="Livros" />
-                        <MenuItem mnemonicParsing="false" onAction="#evtEditora" text="Exemplares" />
+                        <MenuItem mnemonicParsing="false" onAction="#evtEditoras" text="Editora" />
+                        <MenuItem mnemonicParsing="false" onAction="#evtLivros" text="Livros" />
+                        <MenuItem mnemonicParsing="false" onAction="#evtExemplares" text="Exemplares" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Empréstimos">
                      <items>
-                        <MenuItem mnemonicParsing="false" onAction="#evtRegistrarEmprestimo" text="Registrar Empréstimo" />
-                        <MenuItem mnemonicParsing="false" onAction="#evtRegistrarReserva" text="Registrar Reserva" />
+                        <MenuItem mnemonicParsing="false" onAction="#evtEmprestimos" text="Empréstimos" />
+                        <MenuItem mnemonicParsing="false" onAction="#evtReservas" text="Reservas" />
                      </items>
                   </Menu>
                 <Menu mnemonicParsing="false" text="Ajuda" />
