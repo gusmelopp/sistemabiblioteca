@@ -2,23 +2,22 @@
 package biblioteca.dao;
 
 import biblioteca.entity.Editora;
-import biblioteca.entity.Editora;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class EditoraDAO {
     public boolean inserir (Editora editora)
     {
-        String sql = "insert into editora (descricao) values ('$1')";
-        sql = sql.replace("$1", editora.getDescricao());
+        String sql = "insert into editora (nome) values ('$1')";
+        sql = sql.replace("$1", editora.getNome());
         boolean flag = Singleton.getCon().manipular(sql); 
         return flag;                              
     }
     
     public boolean alterar (Editora editora)
     {
-        String sql = "update editora set descricao = '$1' where codigo ="+ editora.getCodigo();
-        sql=sql.replace("$1",editora.getDescricao());
+        String sql = "update editora set nome = '$1' where codigo ="+ editora.getCodigo();
+        sql=sql.replace("$1",editora.getNome());
         boolean flag = Singleton.getCon().manipular(sql); 
         return flag;                       
     }
@@ -36,7 +35,7 @@ public class EditoraDAO {
         try
         {
           if (rs.next())
-            editora = new Editora(rs.getInt("codigo"), rs.getString("descricao"));
+            editora = new Editora(rs.getInt("codigo"), rs.getString("nome"));
         }
         catch(Exception e){System.out.println(e.toString());}
         return editora;
@@ -47,12 +46,12 @@ public class EditoraDAO {
         String sql="select * from editora";
         if (!filtro.isEmpty())
             sql+=" where "+filtro;
-        sql+=" order by descricao";
+        sql+=" order by nome";
         ResultSet rs = Singleton.getCon().consultar(sql); 
         try
         {
           while(rs.next())
-             lista.add(new Editora(rs.getInt("codigo"), rs.getString("descricao")) );
+             lista.add(new Editora(rs.getInt("codigo"), rs.getString("nome")) );
         }
         catch(Exception e){System.out.println(e);}
         return lista;

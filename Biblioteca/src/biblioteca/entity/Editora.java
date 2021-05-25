@@ -3,11 +3,15 @@ package biblioteca.entity;
 
 public class Editora {
     private int codigo;
-    private String descricao;
-
-    public Editora(int codigo, String descricao) {
+    private String nome;
+    
+    public Editora(String nome) {
+        this.nome = nome;
+    }
+    
+    public Editora(int codigo, String nome) {
         this.codigo = codigo;
-        this.descricao = descricao;
+        this.nome = nome;
     }
 
     public int getCodigo() {
@@ -18,11 +22,11 @@ public class Editora {
         this.codigo = codigo;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getNome() {
+        return nome;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setNome(String descricao) {
+        this.nome = descricao;
     }
 }

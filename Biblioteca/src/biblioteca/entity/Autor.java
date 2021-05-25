@@ -4,7 +4,10 @@ package biblioteca.entity;
 public class Autor {
     private int codigo;
     private String nome;
-
+    
+    public Autor(String nome) {
+        this.nome = nome;
+    }
     public Autor(int codigo, String nome) {
         this.codigo = codigo;
         this.nome = nome;

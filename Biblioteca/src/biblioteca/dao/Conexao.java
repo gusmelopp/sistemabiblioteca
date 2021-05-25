@@ -12,8 +12,8 @@ public class Conexao {
     private String erro="";
     
     public Conexao() {
-        this("org.postgresql.Driver", "jdbc:postgresql://motty.db.elephantsql.com:5432/",
-             "fquqfpml", "fquqfpml", "NwK-DKMfgjRdk1keoP5DOkMkti1EHg7m");
+        this("org.postgresql.Driver", "jdbc:postgresql://tuffi.db.elephantsql.com:5432/",
+             "fisjuuyj", "fisjuuyj", "5CXlUDf8LfbGrOn3vbf20Mv0KO0WGRoF");
     }
     
     public Conexao(String driver, String local, String banco, String usuario, String senha) {   
