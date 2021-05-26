@@ -13,6 +13,10 @@ public class Funcionario extends Usuario {
         this.pis = pis;
         this.salario = salario;
     }
+    
+    public Funcionario(String nome, String rg, String cpf, LocalDate dataNasc, String ctps, String pis, double salario) {
+        this(0, nome, rg, cpf, dataNasc, ctps, pis, salario);
+    }
 
     public String getCtps() {
         return ctps;

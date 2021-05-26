@@ -6,7 +6,7 @@ import biblioteca.entity.Usuario;
 public class UsuarioDAO {
     public boolean inserir (Usuario usuario)
     {
-        String sql="insert into usuario (nome, rg, cpf, dataNasc) values ('$1', '$2', '$3', '$4')";
+        String sql="insert into usuarios (nome, rg, cpf, datanasc) values ('$1', '$2', '$3', '$4')";
         sql = sql.replace("$1", usuario.getNome());
         sql = sql.replace("$2", usuario.getRg());
         sql = sql.replace("$3", usuario.getCpf());
@@ -17,7 +17,7 @@ public class UsuarioDAO {
     
     public boolean alterar (Usuario usuario)
     {
-        String sql="update usuario set nome = '$1', rg = '$2', cpf = '$3', dataNasc = '$4' where codigo = " + usuario.getCodigo();
+        String sql="update usuarios set nome = '$1', rg = '$2', cpf = '$3', datanasc = '$4' where codigo = " + usuario.getCodigo();
         sql = sql.replace("$1", usuario.getNome());
         sql = sql.replace("$2", usuario.getRg());
         sql = sql.replace("$3", usuario.getCpf());
@@ -28,7 +28,7 @@ public class UsuarioDAO {
     
     public boolean apagar(int id)
     {        
-        boolean flag = Singleton.getCon().manipular("delete from usuario where codigo="+id);
+        boolean flag = Singleton.getCon().manipular("delete from usuarios where codigo="+id);
         return flag;                      
     }
 }

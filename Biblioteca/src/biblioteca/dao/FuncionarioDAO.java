@@ -2,7 +2,6 @@
 package biblioteca.dao;
 
 import biblioteca.entity.Funcionario;
-import biblioteca.entity.Funcionario;
 import biblioteca.entity.Usuario;
 import java.sql.ResultSet;
 import java.time.LocalDate;
@@ -16,7 +15,7 @@ public class FuncionarioDAO {
         
         if(dao.inserir(new Usuario(func.getNome(), func.getRg(), func.getCpf(), func.getDataNasc())))
         {
-            int cod = Singleton.getCon().getMaxPK("usuario","codigo");
+            int cod = Singleton.getCon().getMaxPK("usuarios","codigo");
             
             String sql="insert into funcionarios (salario, ctps, pis, usuario) values ('$1', '$2', '$3', '$4')";
             sql = sql.replace("$1", func.getSalario()+"");
@@ -57,13 +56,13 @@ public class FuncionarioDAO {
      public static Funcionario getFuncionario(int cod)
     {
         Funcionario funcionario = null;
-        String sql="select * from usuario inner join funcionario on usuario.codigo = funcionario.codigo where usuario.codigo ="+cod;
+        String sql="select * from usuarios inner join funcionarios on usuario.codigo = funcionario.codigo where usuario.codigo ="+cod;
        
         ResultSet rs =  Singleton.getCon().consultar(sql); 
         try
         {
           if (rs.next())
-            funcionario = new Funcionario(rs.getInt("usu.codigo"), rs.getString("usu.nome"), rs.getString("usu.rg"), rs.getString("usu.cpf"), LocalDate.parse(rs.getString("usu.dataNasc")), rs.getString("func.ctps"), rs.getString("pis"), rs.getDouble("salario"));
+            funcionario = new Funcionario(rs.getInt("codigo"), rs.getString("nome"), rs.getString("rg"), rs.getString("cpf"), LocalDate.parse(rs.getString("datanasc")), rs.getString("ctps"), rs.getString("pis"), rs.getDouble("salario"));
         }
         catch(Exception e){System.out.println(e.toString());}
         return funcionario;
@@ -71,15 +70,15 @@ public class FuncionarioDAO {
     public static ArrayList <Funcionario> getFuncionario(String filtro)
     {   
         ArrayList <Funcionario> lista = new ArrayList(); 
-        String sql="select * from usuario usu INNER JOIN funcionario func on usu.codigo = func.usuario";  
+        String sql="select * from usuarios usu INNER JOIN funcionarios func on usu.codigo = func.usuario";  
         if (!filtro.isEmpty())
             sql+=" where "+filtro;
-        sql+=" order by func.nome";
+        sql+=" order by usu.nome";
         ResultSet rs = Singleton.getCon().consultar(sql);         
         try
         {
           while(rs.next())
-             lista.add(new Funcionario(rs.getInt("usu.codigo"), rs.getString("usu.nome"), rs.getString("usu.rg"), rs.getString("usu.cpf"), LocalDate.parse(rs.getString("usu.dataNasc")), rs.getString("func.ctps"), rs.getString("pis"), rs.getDouble("salario")) );
+             lista.add(new Funcionario(rs.getInt("codigo"), rs.getString("nome"), rs.getString("rg"), rs.getString("cpf"), LocalDate.parse(rs.getString("datanasc")), rs.getString("ctps"), rs.getString("pis"), rs.getDouble("salario")) );
         }
         catch(Exception e){System.out.println(e);}
         

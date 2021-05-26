@@ -12,6 +12,11 @@ public class Cliente extends Usuario {
         this.cart = cart;
         this.estudante = estudante;
     }
+    
+    public Cliente(String nome, String rg, String cpf, LocalDate dataNasc, String cart, boolean estudante) {
+        this(0, nome, rg, cpf, dataNasc, cart, estudante);
+    }
+    
 
     public String getCart() {
         return cart;

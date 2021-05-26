@@ -5,7 +5,7 @@
 -- Dumped from database version 11.5 (Ubuntu 11.5-3.pgdg18.04+1)
 -- Dumped by pg_dump version 13.2
 
--- Started on 2021-05-26 01:01:01
+-- Started on 2021-05-26 15:02:48
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -73,8 +73,9 @@ ALTER TABLE public.autor ALTER COLUMN codigo ADD GENERATED ALWAYS AS IDENTITY (
 --
 
 CREATE TABLE public.clientes (
-    cart character varying(5) NOT NULL,
-    usuario integer NOT NULL
+    cart character varying(5),
+    usuario integer NOT NULL,
+    estudante boolean NOT NULL
 );
 
 
@@ -166,7 +167,7 @@ CREATE TABLE public.exemplares (
     codigo integer NOT NULL,
     local character varying(15) NOT NULL,
     qtde integer NOT NULL,
-    "valorEmprestimo" double precision NOT NULL,
+    valoremprestimo double precision NOT NULL,
     status boolean NOT NULL,
     livro integer NOT NULL
 );
@@ -199,7 +200,7 @@ CREATE TABLE public.funcionarios (
     ctps character varying(10) NOT NULL,
     pis character varying(10) NOT NULL,
     usuario integer NOT NULL,
-    matricula character varying(5) NOT NULL
+    matricula character varying(5)
 );
 
 
@@ -276,7 +277,7 @@ CREATE TABLE public.usuarios (
     codigo integer NOT NULL,
     nome character varying(100) NOT NULL,
     cpf character varying(14) NOT NULL,
-    "dataNasc" date NOT NULL,
+    datanasc date NOT NULL,
     rg character varying(14) NOT NULL
 );
 
@@ -470,7 +471,7 @@ ALTER TABLE ONLY public.exemplares
 
 
 --
--- TOC entry 3949  (class 2606 OID 4391977)
+-- TOC entry 3949 (class 2606 OID 4391977)
 -- Name: funcionarios usuario_fk; Type: FK CONSTRAINT; Schema: public; Owner: fisjuuyj
 --
 
@@ -478,7 +479,7 @@ ALTER TABLE ONLY public.funcionarios
     ADD CONSTRAINT usuario_fk FOREIGN KEY (usuario) REFERENCES public.usuarios(codigo);
 
 
--- Completed on 2021-05-26 01:01:04
+-- Completed on 2021-05-26 15:02:51
 
 --
 -- PostgreSQL database dump complete
