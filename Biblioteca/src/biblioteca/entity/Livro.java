@@ -3,11 +3,13 @@ package biblioteca.entity;
 
 public class Livro {
     private int codigo;
-    private String genero, titulo, ano;
+    private String titulo, genero, ano;
     private Autor autor;
     private Editora editora;
-
-    public Livro(int codigo, String genero, String titulo, String ano, Autor autor, Editora editora) {
+    
+    
+    public Livro(int codigo, String titulo, String genero, String ano, Autor autor, Editora editora)
+    {
         this.codigo = codigo;
         this.genero = genero;
         this.titulo = titulo;
@@ -15,7 +17,12 @@ public class Livro {
         this.autor = autor;
         this.editora = editora;
     }
-
+    
+    public Livro(String titulo, String genero, String ano, Autor autor, Editora editora)
+    {
+        this(0, titulo, genero, ano, autor, editora);
+    }
+    
     public int getCodigo() {
         return codigo;
     }
@@ -62,5 +69,11 @@ public class Livro {
 
     public void setEditora(Editora editora) {
         this.editora = editora;
+    }
+    
+    @Override
+    public String toString()
+    {
+        return titulo;
     }
 }

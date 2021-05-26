@@ -5,15 +5,16 @@ public class Editora {
     private int codigo;
     private String nome;
     
-    public Editora(String nome) {
-        this.nome = nome;
-    }
     
     public Editora(int codigo, String nome) {
         this.codigo = codigo;
         this.nome = nome;
     }
-
+    
+    public Editora(String nome) {
+        this(0, nome);
+    }
+    
     public int getCodigo() {
         return codigo;
     }
@@ -28,5 +29,10 @@ public class Editora {
 
     public void setNome(String descricao) {
         this.nome = descricao;
+    }
+    
+    public String toString()
+    {
+        return nome;
     }
 }

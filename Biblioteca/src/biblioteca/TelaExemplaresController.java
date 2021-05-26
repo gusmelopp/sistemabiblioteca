@@ -1,18 +1,25 @@
 
 package biblioteca;
 
+import biblioteca.dao.ExemplarDAO;
+import biblioteca.entity.Exemplar;
+import biblioteca.entity.Livro;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -22,29 +29,45 @@ public class TelaExemplaresController implements Initializable {
     @FXML
     private TextField txFiltro;
     @FXML
-    private TableView<?> tabela;
+    private TableView<Exemplar> tabela;
     @FXML
-    private TableColumn<?, ?> colId;
+    private TableColumn<Exemplar, Integer> colId;
     @FXML
-    private TableColumn<?, ?> colTituloLivro;
+    private TableColumn<Exemplar, Livro> colTituloLivro;
     @FXML
-    private TableColumn<?, ?> colQuantidade;
+    private TableColumn<Exemplar, Integer> colQuantidade;
     @FXML
-    private TableColumn<?, ?> colLocal;
+    private TableColumn<Exemplar, String> colLocal;
     @FXML
-    private TableColumn<?, ?> colValor;
+    private TableColumn<Exemplar, Double> colValor;
     @FXML
-    private TableColumn<?, ?> colSatus;
+    private TableColumn<Exemplar, Boolean> colSatus;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        colId.setCellValueFactory(new PropertyValueFactory<>("codigo"));
+        colTituloLivro.setCellValueFactory(new PropertyValueFactory<>("livro"));
+        colQuantidade.setCellValueFactory(new PropertyValueFactory<>("qtde"));
+        colLocal.setCellValueFactory(new PropertyValueFactory<>("local"));
+        colValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
+        colSatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+        colSatus.setCellFactory(
+                tc -> new TableCell<Exemplar, Boolean>() {
+                    @Override
+                    protected void updateItem(Boolean item, boolean empty) {
+                        super.updateItem(item, empty);
+                        setText(empty ? null :
+                            item.booleanValue() ? "Disponível" : "Indisponível");
+                    }
+                }
+        );
+        carregarTabela("");
     }
     
     private void carregarTabela(String filtro) {
-        /*ExemplarDAO dao = new ExemplarDAO();
-        List <Exemplar> exemplar = dao.get(filtro);
-        tabela.setItems(FXCollections.observableArrayList(exemplar));*/
+        
+        List <Exemplar> exemplar = ExemplarDAO.getExemplar(filtro);
+        tabela.setItems(FXCollections.observableArrayList(exemplar));
     }
     
     @FXML
@@ -61,7 +84,7 @@ public class TelaExemplaresController implements Initializable {
         stage.initStyle(StageStyle.UTILITY);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
-        //carregarTabela("");
+        carregarTabela("");
     }
 
     @FXML

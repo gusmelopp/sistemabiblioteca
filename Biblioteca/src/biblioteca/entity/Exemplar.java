@@ -8,6 +8,8 @@ public class Exemplar {
     private boolean status;
     private Livro livro;
 
+    
+    
     public Exemplar(int codigo, int qtde, double valor, String local, boolean status, Livro livro) {
         this.codigo = codigo;
         this.qtde = qtde;
@@ -15,6 +17,11 @@ public class Exemplar {
         this.local = local;
         this.status = status;
         this.livro = livro;
+    }
+    
+    public Exemplar(int qtde, double valor, String local, boolean status, Livro livro)
+    {
+        this(0, qtde, valor, local, status, livro);
     }
 
     public int getCodigo() {

@@ -5,14 +5,15 @@ public class Autor {
     private int codigo;
     private String nome;
     
-    public Autor(String nome) {
-        this.nome = nome;
-    }
     public Autor(int codigo, String nome) {
         this.codigo = codigo;
         this.nome = nome;
     }
 
+    public Autor(String nome) {
+        this(0, nome);
+    }
+    
     public int getCodigo() {
         return codigo;
     }
@@ -27,5 +28,11 @@ public class Autor {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+    
+    @Override
+    public String toString()
+    {
+        return nome;
     }
 }
