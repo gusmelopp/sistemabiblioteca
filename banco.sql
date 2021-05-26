@@ -470,7 +470,7 @@ ALTER TABLE ONLY public.exemplares
 
 
 --
--- TOC entry 3949 (class 2606 OID 4391977)
+-- TOC entry 3949  (class 2606 OID 4391977)
 -- Name: funcionarios usuario_fk; Type: FK CONSTRAINT; Schema: public; Owner: fisjuuyj
 --
 
