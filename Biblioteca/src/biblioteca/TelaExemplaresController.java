@@ -15,6 +15,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -42,6 +44,8 @@ public class TelaExemplaresController implements Initializable {
     private TableColumn<Exemplar, Double> colValor;
     @FXML
     private TableColumn<Exemplar, Boolean> colSatus;
+    
+    static public Exemplar exemplar = null;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -72,6 +76,9 @@ public class TelaExemplaresController implements Initializable {
     
     @FXML
     private void evtFiltrar(ActionEvent event) {
+        String filtro=" upper(titulo) like '%#%'";
+        filtro=filtro.replace("#", txFiltro.getText().toUpperCase());
+        carregarTabela(filtro);
     }
 
     @FXML
@@ -94,7 +101,7 @@ public class TelaExemplaresController implements Initializable {
 
     @FXML
     private void evtAlterar(ActionEvent event) throws IOException {
-        //exemplares = tabela.getSelectionModel().getSelectedItem();
+        exemplar = tabela.getSelectionModel().getSelectedItem();
         Parent root = FXMLLoader.load(getClass().getResource("TelaExemplaresCadastro.fxml"));
         Scene scene = new Scene(root);
         Stage stage = new Stage();
@@ -103,20 +110,20 @@ public class TelaExemplaresController implements Initializable {
         stage.initStyle(StageStyle.UTILITY);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
-        //exemplares = null;
-        //carregarTabela("");
+        exemplar = null;
+        carregarTabela("");
     }
 
     @FXML
     private void evtExcluir(ActionEvent event) {
-        /*int id = tabela.getSelectionModel().getSelectedItem().getCodigo();
+        int id = tabela.getSelectionModel().getSelectedItem().getCodigo();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setContentText("Deseja realmente excluir?");
         if(alert.showAndWait().get() == ButtonType.OK)
         {
             new ExemplarDAO().apagar(id);
             carregarTabela("");
-        }*/
+        }
     }
     
 }

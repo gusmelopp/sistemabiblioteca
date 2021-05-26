@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class ExemplarDAO {
     public boolean inserir (Exemplar exemplar)
     {
-        String sql = "insert into exemplares (qtde, valor, local, status, livro) values ('$1', '$2', '$3', '$4', '$5')";
+        String sql = "insert into exemplares (qtde, valoremprestimo, local, status, livro) values ('$1', '$2', '$3', '$4', '$5')";
         sql = sql.replace("$1", exemplar.getQtde()+"");
         sql = sql.replace("$2", String.valueOf(exemplar.getValor()));
         sql = sql.replace("$3", exemplar.getLocal());
@@ -22,7 +22,7 @@ public class ExemplarDAO {
     
     public boolean alterar (Exemplar exemplar)
     {
-        String sql="update exemplares set qtde = '$1', valor = '$2', local = '$3', status = '$4', livro = '$5' where codigo ="+ exemplar.getCodigo();
+        String sql="update exemplares set qtde = '$1', valoremprestimo = '$2', local = '$3', status = '$4', livro = '$5' where codigo ="+ exemplar.getCodigo();
         sql = sql.replace("$1", exemplar.getQtde()+"");
         sql = sql.replace("$2", String.valueOf(exemplar.getValor()));
         sql = sql.replace("$3", exemplar.getLocal());
@@ -45,7 +45,8 @@ public class ExemplarDAO {
         try
         {
           if (rs.next())
-            exemplar = new Exemplar(rs.getInt("codigo"), rs.getInt("qtde"), rs.getDouble("valor"), rs.getString("local"), rs.getBoolean("status"), LivroDAO.getLivro(rs.getInt("livro")));
+            exemplar = new Exemplar(rs.getInt("codigo"), rs.getInt("qtde"), rs.getDouble("valoremprestimo"), rs.getString("local"), rs.getBoolean("status"), 
+                    LivroDAO.getLivro(rs.getInt("livro")));
         }
         catch(Exception e){System.out.println(e.toString());}
         return exemplar;
@@ -61,7 +62,7 @@ public class ExemplarDAO {
         try
         {
           while(rs.next())
-             lista.add(new Exemplar(rs.getInt("codigo"), rs.getInt("qtde"), rs.getDouble("valorEmprestimo"), rs.getString("local"), rs.getBoolean("status"),
+             lista.add(new Exemplar(rs.getInt("codigo"), rs.getInt("qtde"), rs.getDouble("valoremprestimo"), rs.getString("local"), rs.getBoolean("status"),
                     new Livro(rs.getInt("livro"), rs.getString("titulo"), rs.getString("genero"), rs.getString("ano"), AutorDAO.getAutor(rs.getInt("autor")), EditoraDAO.getEditora(rs.getInt("editora")))
                      //LivroDAO.getLivro(rs.getInt("livro"))
              ));
